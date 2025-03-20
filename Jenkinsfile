@@ -8,34 +8,23 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Cloner le dépôt Git
                 git branch: 'main', url: 'https://github.com/salim-zemmouk/api_user.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Installer les dépendances Node.js, incluant Mocha et Mochawesome
+                // Installer les dépendances Node.js, y compris Cypress
                 sh 'npm install'
-            }
-        }
-
-        stage('Installer Cypress') {
-            steps {
-                // Installer cypress
-                sh 'npm install cypress --save-dev'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
-                // Exécuter Cypress avec Mocha pour générer un rapport
+                // Exécuter Cypress sans générer de rapport
                 sh 'npx cypress run'
             }
-        }
-
-
-
-
         }
     }
 }
