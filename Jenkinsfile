@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                // Exécuter les tests Cypress avec Mochawesome
+                // Exécuter les tests Cypress avec Mocha
                 sh 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/reports,overwrite=false,html=true,json=true"'
             }
         }
