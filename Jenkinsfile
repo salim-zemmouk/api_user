@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Cloner le dépôt Git
-                git branch: 'main', url: 'https://github.com/ton-utilisateur/ton-projet.git'
+                git branch: 'main', url: 'https://github.com/salim-zemmouk/api_user.git'
             }
         }
 
