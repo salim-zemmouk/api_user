@@ -15,14 +15,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                // Installer les dépendances Node.js, y compris Cypress
+                // Installer les dépendances Node.js
                 sh 'npm install'
+            }
+        }
+
+        stage('Fix Cypress Permissions') {
+            steps {
+                // Donner les permissions d'exécution à Cypress (si nécessaire)
+                sh 'chmod +x node_modules/.bin/cypress'
             }
         }
 
         stage('Run Cypress Tests') {
             steps {
-                // Exécuter Cypress sans générer de rapport
+                // Exécuter Cypress avec Mocha
                 sh 'npx cypress run'
             }
         }
