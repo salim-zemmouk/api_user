@@ -20,6 +20,13 @@ pipeline {
             }
         }
 
+        stage('Install Cypress Binary') {
+            steps {
+                // Télécharger le binaire Cypress si nécessaire
+                sh 'npx cypress install'
+            }
+        }
+
         stage('Fix Cypress Permissions') {
             steps {
                 // Donner les permissions d'exécution à Cypress (si nécessaire)
