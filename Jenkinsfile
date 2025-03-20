@@ -26,40 +26,16 @@ pipeline {
             }
         }
 
-        stage('Install Mocha and Mochawesome') {
-            steps {
-                // Installer Mocha et Mochawesome
-                sh 'npm install mocha mochawesome mochawesome-merge mochawesome-report-generator --save-dev'
-            }
-        }
-
-        stage('Verify Cypress Permissions') {
-            steps {
-                // Vérifier les permissions de Cypress
-                sh 'ls -l node_modules/.bin/cypress'
-            }
-        }
-
         stage('Run Cypress Tests') {
             steps {
                 // Exécuter Cypress avec Mocha pour générer un rapport
-                sh 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/reports,overwrite=false,html=true,json=true"'
+                sh 'npx cypress run'
             }
         }
 
-        stage('Generate HTML Report') {
-            steps {
-                // Générer le rapport HTML à partir des fichiers JSON
-                sh 'npx mochawesome-merge cypress/reports/*.json > cypress/reports/report.json'
-                sh 'npx marge cypress/reports/report.json -f report -o cypress/reports'
-            }
-        }
 
-        stage('Archive Report') {
-            steps {
-                // Archiver le rapport HTML pour le rendre disponible dans Jenkins
-                archiveArtifacts artifacts: 'cypress/reports/report.html', fingerprint: true
-            }
+
+
         }
     }
 }
